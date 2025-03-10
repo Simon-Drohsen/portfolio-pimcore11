@@ -1,0 +1,22 @@
+{% extends "base.html.twig" %}
+
+{% block content %}
+    <twig:Section>
+        <twig:Container>
+            {% if project_list is iterable and project_list is not empty %}
+                <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-10 md:gap-x-10 md:gap-y-16 lg:gap-y-24" role="list">
+                    {% for project in project_list %}
+                        <div class="flex sm:block justify-center content" role="listitem">
+                            {% if project is pimcore_data_object_class('project') %}
+                                <twig:Card :item="project" />
+                            {% endif %}
+                        </div>
+                    {% endfor %}
+                </div>
+            {% else %}
+                <p class="text-large">{{ 'app.project_list.list.empty'|trans }}</p>
+            {% endif %}
+        </twig:Container>
+    </twig:Section>
+{% endblock %}
+

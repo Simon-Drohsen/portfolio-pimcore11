@@ -1,0 +1,31 @@
+{% apply spaceless %}
+<!DOCTYPE html>
+<html
+    lang="{{ app.request.locale|replace({'_': '-'}) }}"
+    class="motion-safe:scroll-smooth"
+>
+    <head>
+        {%- block metadata %}
+            <meta charset="utf-8" />
+            <meta name="viewport" content="width=device-width, initial-scale=1" />
+            {{ include('base/favicons.html.twig') }}
+            {{- pimcore_head_meta() -}}
+            {{- pimcore_head_link() -}}
+        {% endblock %}
+        {%- block styles %}
+            {{- vite_entry_link_tags('theme') }}
+        {%- endblock %}
+        {%- block javascripts %}
+            {{- vite_entry_script_tags('app') }}
+        {% endblock %}
+    </head>
+
+    <body class="bg-gray-100">
+    {{ include('base/header.html.twig') }}
+        <main>
+            {% block content %}{% endblock %}
+        </main>
+        {{ include('base/footer.html.twig') }}
+    </body>
+</html>
+{% endapply %}

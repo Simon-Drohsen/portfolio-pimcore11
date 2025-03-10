@@ -1,0 +1,25 @@
+{% props size = 'regular' %}
+
+{% set contain = cva({
+    base: '',
+    variants: {
+        size: {
+            'none': '',
+            'large': 'max-w-screen-3xl px-5 lg:px-10 mx-auto',
+            'x-large': 'max-w-[1645px] px-5 lg:px-10 mx-auto',
+            'regular':'max-w-screen-xl px-5 lg:px-10 mx-auto',
+            'regular-expand':'max-w-screen-xl px-0 md:px-5 lg:px-10 mx-auto',
+            'medium': 'max-w-[1112px] px-5 lg:px-10 mx-auto',
+            'small': 'max-w-screen-lg px-5 lg:px-10 mx-auto',
+            'xsmall': 'max-w-screen-md px-5 lg:px-10 mx-auto',
+            'expand-right': 'max-w-screen-xl container-expand-right px-5 lg:pr-0 lg:pl-10 mr-0'
+        }
+    }
+}) %}
+
+{# regular - 1380 #}
+{# medium - 1156 #}
+
+<div class="{{ contain.apply({size}, attributes.render('class')) }}">
+    {% block content %}{% endblock %}
+</div>

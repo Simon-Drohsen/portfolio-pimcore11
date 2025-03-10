@@ -1,0 +1,24 @@
+{# templates/search/results.html.twig #}
+{% extends 'base.html.twig' %}
+
+{% block title %}Search Results{% endblock %}
+
+{% block content %}
+    <twig:Section>
+        <twig:Container>
+            <h1>Search Results for "{{ query }}"</h1>
+
+            {% if results is empty %}
+                <p>No results found.</p>
+            {% else %}
+                <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-10 md:gap-x-10 md:gap-y-16 lg:gap-y-24" role="list">
+                    {% for result in results %}
+                        <div class="flex sm:block justify-center content" role="listitem">
+                            <twig:Card :item="result" />
+                        </div>
+                    {% endfor %}
+                </div>
+            {% endif %}
+        </twig:Container>
+    </twig:Section>
+{% endblock %}

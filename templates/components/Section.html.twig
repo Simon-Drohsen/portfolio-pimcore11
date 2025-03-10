@@ -1,0 +1,24 @@
+
+{% props color = 'light_gray', text = 'black'  %}
+
+{% set section = cva({
+    base: 'section',
+    variants: {
+        color: {
+            'blue': 'bg-blue-900',
+            'light_gray': 'bg-black-50',
+        },
+        text: {
+            'white': 'text-white',
+            'black': 'text-black',
+        },
+    },
+    defaultVariants: {
+        color: 'white',
+        text: 'black',
+    },
+}) %}
+
+<section class="{{ section.apply({color, text}, attributes.render('class')) }}">
+    {% block content %}{% endblock %}
+</section>

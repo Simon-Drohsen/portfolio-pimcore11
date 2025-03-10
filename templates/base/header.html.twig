@@ -1,0 +1,55 @@
+{% if not document is defined or not document %}
+    {% set document = pimcore_document(1) %}
+{% endif %}
+
+{% set navStartNode = document.getProperty('navigationRoot') %}
+{% if not navStartNode is instanceof('\\Pimcore\\Model\\Document\\Page') %}
+    {% set navStartNode = pimcore_document(0) %}
+{% endif %}
+
+{% set mainNavigation = pimcore_build_nav({
+    active: document,
+    root: navStartNode
+}) %}
+
+<nav class="bg-blue-900 mb-8 text-white">
+    <ul class="flex space-x-4 p-4 justify-end">
+        <li>
+            <form action="{{ path('search') }}" method="get">
+                <input type="text" name="q" placeholder="Search...">
+            </form>
+        </li>
+        <li>
+            <a href="/" class="px-4 py-2 rounded-md
+                {% if document.id == 1 %} bg-blue-500 {% else %} hover:bg-blue-700 {% endif %}">
+                Home
+            </a>
+        </li>
+        {% for item in mainNavigation %}
+            {% if item.visible %}
+                <li>
+                    <a href="{{ item._uri }}" class="px-4 py-2 rounded-md
+                        {% if item.active %} bg-blue-500 {% else %} hover:bg-blue-700 {% endif %}">
+                        {{ item.label|capitalize }}
+                    </a>
+
+                    {% if item.children is not empty %}
+                        <ul class="absolute bg-gray-800 mt-2 rounded shadow-lg hidden group-hover:block">
+                            {% for child in item.children %}
+                                {% if child.visible %}
+                                    <li>
+                                        <a href="{{ child.url }}" class="block px-4 py-2 hover:bg-gray-600">
+                                            {{ child.label|capitalize }}
+                                        </a>
+                                    </li>
+                                {% endif %}
+                            {% endfor %}
+                        </ul>
+                    {% endif %}
+                </li>
+            {% endif %}
+        {% endfor %}
+    </ul>
+</nav>
+
+

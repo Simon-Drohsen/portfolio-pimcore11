@@ -1,0 +1,66 @@
+dynamic_search:
+    enable_pimcore_element_listener: true
+    context:
+        default:
+            index_provider:
+                service: 'elasticsearch'
+                options:
+                    index:
+                        identifier: 'default'
+                        hosts:
+                            - 'elasticsearch:9200'
+                        settings: []
+                        credentials: []
+#                        analyzer:
+#                            keyword_analyzer:
+#                                tokenizer: keyword
+#                                type: custom
+#                                filter:
+#                                    - lowercase
+#                                    - asciifolding
+#                                    - trim
+#                                char_filter: []
+#                            edge_ngram_analyzer:
+#                                tokenizer: edge_ngram_tokenizer
+#                                filter:
+#                                    - lowercase
+#                            edge_ngram_search_analyzer:
+#                                tokenizer: lowercase
+#                        tokenizer:
+#                            edge_ngram_tokenizer:
+#                                type: edge_ngram
+#                                min_gram: 2
+#                                max_gram: 5
+#                                token_chars:
+#                                    - letter
+            data_provider:
+                service: 'trinity_data'
+                options:
+                    always:
+                        index_object: true
+                        object_class_names:
+                            - Blogs
+                        index_document: true
+                        index_asset: false
+                    full_dispatch:
+                        object_limit: 20
+                        document_limit: 10
+                normalizer:
+                    service: 'trinity_localized_resource_normalizer'
+            output_channels:
+                suggestions:
+                    service: 'elasticsearch_search'
+                    normalizer:
+                        service: 'es_document_raw_normalizer'
+                    paginator:
+                        enabled: false
+                search:
+                    service: 'elasticsearch_search'
+                    use_frontend_controller: true
+                    options:
+                        result_limit: 10
+                    normalizer:
+                        service: 'es_document_source_normalizer'
+                    paginator:
+                        enabled: true
+                        max_per_page: 10

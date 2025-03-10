@@ -1,0 +1,16 @@
+{% set detailPath = 'app_' ~ item.classId ~ '_detail' %}
+
+<a href="{{ path(detailPath, {slug: item.getSlug}) }}" class="no-underline text-black">
+    <div class="max-w-sm rounded overflow-hidden shadow-lg">
+        {{ item.image|pimcore_image_thumbnail_html('blog_preview_image', {
+            'disableAutoAlt': false,
+            'disableAutoCopyright': true,
+            'disableAutoTitle': true,
+            'imgAttributes': {'class': 'w-full'}
+        }) }}
+        <div class="px-6 py-4">
+            <div class="font-bold text-xl mb-2">{{ item.title }}</div>
+            <p class="text-gray-700 text-base">{{ item.content }}</p>
+        </div>
+    </div>
+</a>

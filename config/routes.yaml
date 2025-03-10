@@ -1,0 +1,20 @@
+_pimcore:
+    resource: "@PimcoreCoreBundle/config/routing.yaml"
+
+when@dev:
+    _pimcore_dev:
+        resource: "@PimcoreCoreBundle/config/routing_dev.yaml"
+
+controllers:
+    resource: '../src/Controller/'
+    type: attribute
+
+dynamic_search_frontend:
+    resource: '@DynamicSearchBundle/config/pimcore/routing/frontend_routing.yaml'
+
+pentatrion_vite:
+    resource: "routes/pentatrion_vite.yaml"
+
+search:
+    path: /search
+    controller: App\Controller\SearchController::search

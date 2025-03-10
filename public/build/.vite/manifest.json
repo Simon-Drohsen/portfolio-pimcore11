@@ -1,0 +1,13 @@
+{
+  "assets/app.js": {
+    "file": "assets/app-l0sNRNKZ.js",
+    "name": "app",
+    "src": "assets/app.js",
+    "isEntry": true
+  },
+  "assets/styles/app.css": {
+    "file": "assets/theme-ZzxZT_2A.css",
+    "src": "assets/styles/app.css",
+    "isEntry": true
+  }
+}
