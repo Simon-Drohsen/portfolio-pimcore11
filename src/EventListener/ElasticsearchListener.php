@@ -3,25 +3,28 @@
 namespace App\EventListener;
 
 use Elasticsearch\Client;
+use Exception;
 use Pimcore\Event\Model\ElementEventInterface;
 use Pimcore\Model\DataObject\Blog;
 use Pimcore\Model\DataObject\News;
 use Pimcore\Model\DataObject\Project;
 use Symfony\Component\EventDispatcher\EventSubscriberInterface;
 use Elasticsearch\ClientBuilder;
-use Symfony\Component\HttpFoundation\Response;
 
 class ElasticsearchListener implements EventSubscriberInterface
 {
     private Client $client;
 
+    /**
+     * @throws Exception
+     */
     public function __construct()
     {
         $this->client = ClientBuilder::create()->setHosts([$_ENV['ELASTICSEARCH_HOST']])->build();
         $ping = $this->client->ping();
 
         if (!$ping) {
-            throw new \Exception("Elasticsearch ist nicht erreichbar.");
+            throw new Exception("Elasticsearch ist nicht erreichbar.");
         }
     }
 

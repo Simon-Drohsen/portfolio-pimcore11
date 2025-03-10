@@ -3,6 +3,7 @@
 namespace App\Command;
 
 use Elasticsearch\Client;
+use Exception;
 use Pimcore\Model\DataObject\Blog;
 use Pimcore\Model\DataObject\News;
 use Pimcore\Model\DataObject\Project;
@@ -18,6 +19,9 @@ class ElasticsearchSyncCommand extends Command
     protected static $defaultName = 'app:elasticsearch:sync';
     private Client $client;
 
+    /**
+     * @throws Exception
+     */
     public function __construct()
     {
         parent::__construct();
@@ -26,7 +30,7 @@ class ElasticsearchSyncCommand extends Command
         $ping = $this->client->ping();
 
         if (!$ping) {
-            throw new \Exception("Elasticsearch ist nicht erreichbar.");
+            throw new Exception("Elasticsearch ist nicht erreichbar.");
         }
     }
 
@@ -88,7 +92,7 @@ class ElasticsearchSyncCommand extends Command
             try {
                 $this->client->bulk($bulkParams);
                 $io->success("{$totalObjects} Objekte erfolgreich in Elasticsearch hochgeladen!");
-            } catch (\Exception $e) {
+            } catch (Exception $e) {
                 $io->error("Fehler beim Hochladen: " . $e->getMessage());
                 return Command::FAILURE;
             }

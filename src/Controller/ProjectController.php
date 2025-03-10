@@ -2,6 +2,7 @@
 
 namespace App\Controller;
 
+use Knp\Component\Pager\PaginatorInterface;
 use Pimcore\Model\DataObject\Project;
 use Pimcore\Controller\FrontendController;
 use Symfony\Component\HttpFoundation\Request;
@@ -12,12 +13,20 @@ use Symfony\Component\Routing\Annotation\Route;
 class ProjectController extends FrontendController
 {
     #[Route('', name: 'list')]
-    public function projectAction(Request $request): Response
+    public function projectAction(Request $request, PaginatorInterface $paginator): Response
     {
-        $projectListing = new project\Listing();
-        $project = $projectListing->getObjects();
+        $page = max(1, $request->query->getInt('page', 1));
+        $limit = 6;
+        $projectQuery = (new Project\Listing())->load();
+
+        $pagination = $paginator->paginate(
+            $projectQuery,
+            $page,
+            $limit
+        );
+
         return $this->render('default/list.html.twig', [
-            'item_list' => $project,
+            'item_list' => $pagination,
         ]);
     }
 

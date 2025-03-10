@@ -3,51 +3,7 @@
 {% block content %}
     <twig:Section>
         <twig:Container>
-            {% if blog_list is iterable and blog_list is not empty %}
-                <h2 class="text-4xl my-8">{{ blog_list[0].className }}</h2>
-                <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-10 md:gap-x-10 md:gap-y-16 lg:gap-y-24" role="list">
-                    {% for blog in blog_list %}
-                        <div class="flex sm:block justify-center content" role="listitem">
-                            {% if blog is pimcore_data_object_class(blog.classId) %}
-                                <twig:Card :item="blog" />
-                            {% endif %}
-                        </div>
-                    {% endfor %}
-                </div>
-
-            {% else %}
-                <p class="text-large">{{ 'app.blog_list.list.empty'|trans }}</p>
-            {% endif %}
-            {% if news_list is iterable and news_list is not empty %}
-                <h2 class="text-4xl my-8">{{ news_list[0].className }}</h2>
-                <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-10 md:gap-x-10 md:gap-y-16 lg:gap-y-24" role="list">
-                    {% for news in news_list %}
-                        <div class="flex sm:block justify-center content" role="listitem">
-                            {% if news is pimcore_data_object_class(news.classId) %}
-                                <twig:Card :item="news" />
-                            {% endif %}
-                        </div>
-                    {% endfor %}
-                </div>
-
-            {% else %}
-                <p class="text-large">{{ 'app.news_list.list.empty'|trans }}</p>
-            {% endif %}
-            {% if project_list is iterable and project_list is not empty %}
-                <h2 class="text-4xl my-8">{{ project_list[0].className }}</h2>
-                <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-10 md:gap-x-10 md:gap-y-16 lg:gap-y-24" role="list">
-                    {% for project in project_list %}
-                        <div class="flex sm:block justify-center content" role="listitem">
-                            {% if project is pimcore_data_object_class(project.classId) %}
-                                <twig:Card :item="project" />
-                            {% endif %}
-                        </div>
-                    {% endfor %}
-                </div>
-
-            {% else %}
-                <p class="text-large">{{ 'app.project_list.list.empty'|trans }}</p>
-            {% endif %}
+            <p>home</p>
         </twig:Container>
     </twig:Section>
 {% endblock %}

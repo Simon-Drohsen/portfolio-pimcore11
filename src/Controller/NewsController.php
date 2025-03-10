@@ -2,6 +2,7 @@
 
 namespace App\Controller;
 
+use Knp\Component\Pager\PaginatorInterface;
 use Pimcore\Model\DataObject\News;
 use Pimcore\Controller\FrontendController;
 use Symfony\Component\HttpFoundation\Request;
@@ -12,12 +13,20 @@ use Symfony\Component\Routing\Annotation\Route;
 class NewsController extends FrontendController
 {
     #[Route('', name: 'list')]
-    public function newsAction(Request $request): Response
+    public function newsAction(Request $request, PaginatorInterface $paginator): Response
     {
-        $blogListing = new News\Listing();
-        $newsList = $blogListing->getObjects();
+        $page = max(1, $request->query->getInt('page', 1));
+        $limit = 6;
+        $newsQuery = (new News\Listing())->load();
+
+        $pagination = $paginator->paginate(
+            $newsQuery,
+            $page,
+            $limit
+        );
+
         return $this->render('default/list.html.twig', [
-            'item_list' => $newsList,
+            'item_list' => $pagination,
         ]);
     }
 

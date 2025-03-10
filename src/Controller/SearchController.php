@@ -36,6 +36,7 @@ class SearchController extends AbstractController
                         'should' => [
                             ['wildcard' => ['content' => '*' . $query . '*']],
                             ['wildcard' => ['title' => '*' . $query . '*']],
+                            ['wildcard' => ['slug' => '*' . $query . '*']],
                         ],
                         'minimum_should_match' => 1
                     ]

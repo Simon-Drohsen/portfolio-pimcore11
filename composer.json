@@ -16,6 +16,7 @@
     "dachcom-digital/dynamic-search": "^4.0",
     "dachcom-digital/dynamic-search-data-provider-trinity": "^3.0",
     "dachcom-digital/dynamic-search-index-provider-elasticsearch": "^3.0",
+    "knplabs/knp-paginator-bundle": "^6.7",
     "pentatrion/vite-bundle": "^8.0",
     "pimcore/admin-ui-classic-bundle": "*",
     "pimcore/pimcore": "*",

@@ -1,0 +1,23 @@
+{% extends "base.html.twig" %}
+
+{% block content %}
+    <twig:Section>
+        <twig:Container>
+            {% if pagination is iterable and pagination is not empty %}
+{#                <h2 class="text-4xl my-8">{{ blog_list[0].className }}</h2>#}
+                <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-10 md:gap-x-10 md:gap-y-16 lg:gap-y-24" role="list">
+                    {% for item in pagination %}
+                        <div class="flex sm:block justify-center content" role="listitem">
+                            <twig:Card :item="item" />
+                        </div>
+                    {% endfor %}
+                </div>
+
+            {% else %}
+                <p class="text-large">{{ 'app.item_list.list.empty'|trans }}</p>
+            {% endif %}
+
+        </twig:Container>
+    </twig:Section>
+{% endblock %}
+

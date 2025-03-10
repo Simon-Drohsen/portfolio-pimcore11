@@ -2,6 +2,7 @@
 
 namespace App\Controller;
 
+use Knp\Component\Pager\PaginatorInterface;
 use Pimcore\Model\DataObject\Blog;
 use Pimcore\Controller\FrontendController;
 use Symfony\Component\HttpFoundation\Request;
@@ -12,12 +13,20 @@ use Symfony\Component\Routing\Annotation\Route;
 class BlogController extends FrontendController
 {
     #[Route('', name: 'list')]
-    public function blogAction(Request $request): Response
+    public function blogAction(Request $request, PaginatorInterface $paginator): Response
     {
-        $blogListing = new Blog\Listing();
-        $blogs = $blogListing->getObjects();
+        $page = max(1, $request->query->getInt('page', 1));
+        $limit = 6;
+        $blogQuery = (new Blog\Listing())->load();
+
+        $pagination = $paginator->paginate(
+            $blogQuery,
+            $page,
+            $limit
+        );
+
         return $this->render('default/list.html.twig', [
-            'item_list' => $blogs,
+            'item_list' => $pagination,
         ]);
     }
 
