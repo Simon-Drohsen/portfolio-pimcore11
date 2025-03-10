@@ -22,15 +22,11 @@ class ElasticsearchSyncCommand extends Command
     {
         parent::__construct();
 
-        try {
-            $this->client = ClientBuilder::create()->setHosts([$_ENV['ELASTICSEARCH_HOST']])->build();
-            $ping = $this->client->ping();
+        $this->client = ClientBuilder::create()->setHosts([$_ENV['ELASTICSEARCH_HOST']])->build();
+        $ping = $this->client->ping();
 
-            if (!$ping) {
-                throw new \Exception("Elasticsearch ist nicht erreichbar.");
-            }
-        } catch (\Exception $e) {
-            return new Response("Fehler: " . $e->getMessage(), Response::HTTP_INTERNAL_SERVER_ERROR);
+        if (!$ping) {
+            throw new \Exception("Elasticsearch ist nicht erreichbar.");
         }
     }
 
@@ -82,9 +78,8 @@ class ElasticsearchSyncCommand extends Command
                 ];
                 $bulkParams['body'][] = [
                     'title' => $object->getTitle(),
-                    'content' => method_exists($object, 'getContent') ? $object->getContent() : null,
-                    'slug' => method_exists($object, 'getSlug') ? $object->getSlug() : null,
-                    'category' => method_exists($object, 'getCategory') ? $object->getCategory() : null,
+                    'content' => $object->getContent(),
+                    'slug' => $object->getSlug(),
                 ];
             }
         }

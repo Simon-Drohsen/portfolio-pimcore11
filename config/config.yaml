@@ -1,5 +1,5 @@
 imports:
-- { resource: 'local/' }
+    - { resource: 'local/' }
 
 pimcore:
 
@@ -10,7 +10,6 @@ pimcore:
 # ./bin/console debug:config pimcore assets
 # or even more specific:
 # ./bin/console debug:config pimcore assets.image
-
 
 #### TRANSLATIONS
 #    translations:
@@ -32,7 +31,6 @@ pimcore:
 #            'Pimcore\Model\Document\Link': 'App\Model\Document\Link'
 #            'Pimcore\Model\Document\Listing': 'App\Model\Document\Listing'
 
-
 #### CUSTOM DOCUMENT EDITABLES
 #    documents:
 #        allow_trailing_slash: 'yes'
@@ -41,14 +39,12 @@ pimcore:
 #            map:
 #                markdown: \App\Model\Document\Tag\Markdown
 
-
 #### CUSTOM OBJECT DATA TYPES
 #    objects:
 #        class_definitions:
 #            data:
 #                map:
 #                  myDataType: \App\Model\DataObject\Data\MyDataType
-
 
 #### ASSET CUSTOM SETTINGS
 #    assets:
@@ -62,7 +58,6 @@ pimcore:
 #                generator: imagick
 #            thumbnails:
 #                webp_auto_support: false
-
 
 #### SYSTEM SETTINGS
 

@@ -1,0 +1,12 @@
+# Ignore artifacts:
+bin
+cache
+node_modules
+public/build
+public/bundles
+var
+vendor
+*.lock
+
+# Ignore all dotfiles
+.*

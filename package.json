@@ -8,17 +8,36 @@
   "scripts": {
     "build": "vite build",
     "dev": "vite",
+    "format": "prettier --write .",
+    "format:check": "prettier --check .",
+    "lint": "eslint .",
+    "lint:fix": "eslint --fix .",
+    "phpstan": "vendor/bin/phpstan analyse",
     "preview": "vite preview",
     "ssh": "php vendor/bin/dep ssh",
-    "watch": "encore dev --watch"
+    "test": "prettier --check . && vendor/bin/phpstan analyse && eslint .",
+    "watch": "encore dev --watch",
+    "vitest:watch": "vitest --watch",
+    "vitest:ui": "vitest --ui",
+    "vitest:coverage": "vitest --coverage"
   },
   "devDependencies": {
     "@tailwindcss/vite": "^4.0.9",
+    "@vitest/coverage-v8": "^3.0.8",
+    "@vitest/ui": "^3.0.8",
     "autoprefixer": "^10.4.20",
+    "eslint": "^9.22.0",
+    "eslint-config-prettier": "^10.1.1",
+    "eslint-plugin-import": "^2.31.0",
+    "eslint-plugin-prettier": "^5.2.3",
+    "happy-dom": "^17.4.3",
+    "jsdom": "^26.0.0",
+    "prettier": "^3.5.3",
+    "prettier-plugin-tailwindcss": "^0.6.11",
     "sass-embedded": "^1.85.1",
     "vite": "^6.2.0",
     "vite-plugin-symfony": "^8.0.2",
-    "vitest": "^3.0.7"
+    "vitest": "^3.0.8"
   },
   "dependencies": {
     "@tailwindcss/postcss": "^4.0.10",

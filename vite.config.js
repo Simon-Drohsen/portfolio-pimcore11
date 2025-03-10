@@ -1,7 +1,7 @@
-import { defineConfig } from "vite";
-import fs from "fs";
-import tailwindcss from "@tailwindcss/vite";
-import symfony from "vite-plugin-symfony";
+import { defineConfig } from 'vite';
+import fs from 'fs';
+import tailwindcss from '@tailwindcss/vite';
+import symfony from 'vite-plugin-symfony';
 
 export default defineConfig({
     plugins: [
@@ -16,28 +16,33 @@ export default defineConfig({
         assetsInlineLimit: 0,
         rollupOptions: {
             input: {
-                app: "./assets/app.js",
-                theme: "./assets/styles/app.css",
+                app: './assets/app.js',
+                theme: './assets/styles/app.css',
             },
         },
     },
     resolve: {
         alias: {
-            "@": "/assets",
+            '@': '/assets',
         },
     },
     server: {
         https: {
-            key: fs.readFileSync("/etc/ssl/dev.local+4-key.pem"),
-            cert: fs.readFileSync("/etc/ssl/dev.local+4.pem"),
+            key: fs.readFileSync('/etc/ssl/dev.local+4-key.pem'),
+            cert: fs.readFileSync('/etc/ssl/dev.local+4.pem'),
         },
         cors: true,
+    },
+    test: {
+        globals: true,
+        testMatch: ['tests/*.test.js'],
+        environment: 'jsdom',
     },
     css: {
         preprocessorOptions: {
             scss: {
                 quietDeps: true,
-                silenceDeprecations: ["import"],
+                silenceDeprecations: ['import'],
             },
         },
     },

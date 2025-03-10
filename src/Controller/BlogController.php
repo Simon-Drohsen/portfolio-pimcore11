@@ -16,8 +16,8 @@ class BlogController extends FrontendController
     {
         $blogListing = new Blog\Listing();
         $blogs = $blogListing->getObjects();
-        return $this->render('blog/blog.html.twig', [
-            'blog_list' => $blogs,
+        return $this->render('default/list.html.twig', [
+            'item_list' => $blogs,
         ]);
     }
 
@@ -26,8 +26,8 @@ class BlogController extends FrontendController
     {
         $blog = Blog::getBySlug($slug);
 
-        return $this->render('blog/blog_detail.html.twig', [
-            'blog' => $blog->getObjects()[0],
+        return $this->render('default/detail.html.twig', [
+            'item' => $blog->getObjects()[0],
         ]);
     }
 }

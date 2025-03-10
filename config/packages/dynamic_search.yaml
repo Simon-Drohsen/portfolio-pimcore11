@@ -11,28 +11,28 @@ dynamic_search:
                             - 'elasticsearch:9200'
                         settings: []
                         credentials: []
-#                        analyzer:
-#                            keyword_analyzer:
-#                                tokenizer: keyword
-#                                type: custom
-#                                filter:
-#                                    - lowercase
-#                                    - asciifolding
-#                                    - trim
-#                                char_filter: []
-#                            edge_ngram_analyzer:
-#                                tokenizer: edge_ngram_tokenizer
-#                                filter:
-#                                    - lowercase
-#                            edge_ngram_search_analyzer:
-#                                tokenizer: lowercase
-#                        tokenizer:
-#                            edge_ngram_tokenizer:
-#                                type: edge_ngram
-#                                min_gram: 2
-#                                max_gram: 5
-#                                token_chars:
-#                                    - letter
+            #                        analyzer:
+            #                            keyword_analyzer:
+            #                                tokenizer: keyword
+            #                                type: custom
+            #                                filter:
+            #                                    - lowercase
+            #                                    - asciifolding
+            #                                    - trim
+            #                                char_filter: []
+            #                            edge_ngram_analyzer:
+            #                                tokenizer: edge_ngram_tokenizer
+            #                                filter:
+            #                                    - lowercase
+            #                            edge_ngram_search_analyzer:
+            #                                tokenizer: lowercase
+            #                        tokenizer:
+            #                            edge_ngram_tokenizer:
+            #                                type: edge_ngram
+            #                                min_gram: 2
+            #                                max_gram: 5
+            #                                token_chars:
+            #                                    - letter
             data_provider:
                 service: 'trinity_data'
                 options:

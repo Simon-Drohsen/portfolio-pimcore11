@@ -30,10 +30,14 @@ class SearchController extends AbstractController
         }
 
         $params = [
-            'body'  => [
+            'body' => [
                 'query' => [
-                    'match' => [
-                        'content' => $query
+                    'bool' => [
+                        'should' => [
+                            ['wildcard' => ['content' => '*' . $query . '*']],
+                            ['wildcard' => ['title' => '*' . $query . '*']],
+                        ],
+                        'minimum_should_match' => 1
                     ]
                 ]
             ]

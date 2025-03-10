@@ -4,8 +4,8 @@ pimcore:
             thumbnails:
                 definitions:
                     project_preview_image:
-                        items: {  }
-                        medias: {  }
+                        items: {}
+                        medias: {}
                         name: project_preview_image
                         description: ''
                         group: ''

@@ -4,8 +4,8 @@ pimcore:
             thumbnails:
                 definitions:
                     news_preview_image:
-                        items: {  }
-                        medias: {  }
+                        items: {}
+                        medias: {}
                         name: news_preview_image
                         description: ''
                         group: ''

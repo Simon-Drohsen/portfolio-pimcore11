@@ -16,8 +16,8 @@ class NewsController extends FrontendController
     {
         $blogListing = new News\Listing();
         $newsList = $blogListing->getObjects();
-        return $this->render('news/news.html.twig', [
-            'news_list' => $newsList,
+        return $this->render('default/list.html.twig', [
+            'item_list' => $newsList,
         ]);
     }
 
@@ -26,8 +26,8 @@ class NewsController extends FrontendController
     {
         $news = News::getBySlug($slug);
 
-        return $this->render('news/news_detail.html.twig', [
-            'news' => $news->getObjects()[0],
+        return $this->render('default/detail.html.twig', [
+            'item' => $news->getObjects()[0],
         ]);
     }
 }

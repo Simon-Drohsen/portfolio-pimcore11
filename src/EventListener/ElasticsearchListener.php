@@ -17,15 +17,11 @@ class ElasticsearchListener implements EventSubscriberInterface
 
     public function __construct()
     {
-        try {
-            $this->client = ClientBuilder::create()->setHosts([$_ENV['ELASTICSEARCH_HOST']])->build();
-            $ping = $this->client->ping();
+        $this->client = ClientBuilder::create()->setHosts([$_ENV['ELASTICSEARCH_HOST']])->build();
+        $ping = $this->client->ping();
 
-            if (!$ping) {
-                throw new \Exception("Elasticsearch ist nicht erreichbar.");
-            }
-        } catch (\Exception $e) {
-            return new Response("Fehler: " . $e->getMessage(), Response::HTTP_INTERNAL_SERVER_ERROR);
+        if (!$ping) {
+            throw new \Exception("Elasticsearch ist nicht erreichbar.");
         }
     }
 

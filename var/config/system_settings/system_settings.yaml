@@ -34,4 +34,4 @@ pimcore:
         versions:
             days: null
             steps: null
-    email: {  }
+    email: {}

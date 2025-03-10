@@ -16,8 +16,8 @@ class ProjectController extends FrontendController
     {
         $projectListing = new project\Listing();
         $project = $projectListing->getObjects();
-        return $this->render('project/project.html.twig', [
-            'project_list' => $project,
+        return $this->render('default/list.html.twig', [
+            'item_list' => $project,
         ]);
     }
 
@@ -26,8 +26,8 @@ class ProjectController extends FrontendController
     {
         $project = project::getBySlug($slug);
 
-        return $this->render('project/project_detail.html.twig', [
-            'project' => $project->getObjects()[0],
+        return $this->render('default/detail.html.twig', [
+            'item' => $project->getObjects()[0],
         ]);
     }
 }
