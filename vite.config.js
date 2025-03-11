@@ -6,13 +6,12 @@ import symfony from 'vite-plugin-symfony';
 export default defineConfig({
     plugins: [
         symfony({
+            stimulus: true,
             refresh: true,
         }),
         tailwindcss(),
     ],
     build: {
-        manifest: true,
-        outDir: 'public/build',
         assetsInlineLimit: 0,
         rollupOptions: {
             input: {

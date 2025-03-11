@@ -23,25 +23,12 @@ class DefaultController extends FrontendController
     {
         $page = max(1, $request->query->getInt('page', 1));
         $limit = 6;
-        $offset = ($page - 1) * $limit;
-
         $category = $request->query->get('category');
-        $items = [];
 
-        if (!$category || $category === 'blog') {
-            $blogQuery = (new Blog\Listing())->load();
-            $items = array_merge($items, $blogQuery);
-        }
-
-        if (!$category || $category === 'news') {
-            $newsQuery = (new News\Listing())->load();
-            $items = array_merge($items, $newsQuery);
-        }
-
-        if (!$category || $category === 'project') {
-            $projectQuery = (new Project\Listing())->load();
-            $items = array_merge($items, $projectQuery);
-        }
+        $blogList = (new Blog\Listing())->getObjects();
+        $newsList = (new News\Listing())->getObjects();
+        $projectList = (new Project\Listing())->getObjects();
+        $items = array_merge($blogList, $newsList, $projectList);
 
         $pagination = $paginator->paginate(
             $items,
@@ -50,6 +37,29 @@ class DefaultController extends FrontendController
         );
 
         return $this->render('default/list.html.twig', [
+            'category' => $category,
+            'item_list' => $pagination,
+        ]);
+    }
+
+    public function searchAction(Request $request, PaginatorInterface $paginator)
+    {
+        $page = max(1, $request->query->getInt('page', 1));
+        $limit = 6;
+        $category = $request->query->get('category');
+
+        $blogList = (new Blog\Listing())->getObjects();
+        $newsList = (new News\Listing())->getObjects();
+        $projectList = (new Project\Listing())->getObjects();
+        $items = array_merge($blogList, $newsList, $projectList);
+
+        $pagination = $paginator->paginate(
+            $items,
+            $page,
+            $limit
+        );
+
+        return $this->render('search/results.html.twig', [
             'category' => $category,
             'item_list' => $pagination,
         ]);

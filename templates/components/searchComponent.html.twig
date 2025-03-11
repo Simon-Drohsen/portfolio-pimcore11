@@ -1,0 +1,35 @@
+{% set pageCount = (this.results.totalItemCount / this.results.itemNumberPerPage)|round(0, 'ceil') %}
+
+<div {{ attributes.defaults(stimulus_controller('appear')) }}>
+
+    <input type="text" data-action="live#$render" data-model="query" placeholder="Search Posts"
+           class="focus:border-sky-500 outline focus:outline-sky-500 rounded-lg outline-blue-900 w-full h-10 text-3xl my-8" />
+
+    {{ component('FilterComponent', computed.results.items) }}
+
+    <div class="inp pt-3">
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-10 md:gap-x-10 md:gap-y-16 lg:gap-y-24" role="list">
+            {% for item in computed.results %}
+                <div class="flex sm:block justify-center content" role="listitem">
+                    <twig:Card :item="item" />
+                </div>
+            {% else %}
+                <p class="flex justify-center content text-3xl">
+                    No Posts found for "{{ query }}"
+                </p>
+            {% endfor %}
+        </div>
+    </div>
+
+    <div class="flex justify-center mt-4">
+        {% if this.page > 1 %}
+            <button {{ live_action('prevPage') }} class="px-4 py-2 bg-gray-200 rounded">Zurück</button>
+        {% endif %}
+
+        <span class="px-4 py-2">{{ this.page }} / {{ pageCount }}</span>
+
+        {% if this.page < pageCount %}
+            <button {{ live_action('nextPage') }} class="px-4 py-2 bg-gray-200 rounded">Weiter</button>
+        {% endif %}
+    </div>
+</div>

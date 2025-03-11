@@ -2,17 +2,19 @@
   "base": "/build/",
   "entryPoints": {
     "app": {
-      "css": [],
+      "css": [
+        "/build/assets/app-BuCAZyZe.css"
+      ],
       "dynamic": [],
       "js": [
-        "/build/assets/app-l0sNRNKZ.js"
+        "/build/assets/app-DevYIZcu.js"
       ],
       "legacy": false,
       "preload": []
     },
     "theme": {
       "css": [
-        "/build/assets/theme-CFMSpOD2.css"
+        "/build/assets/theme-CLl1G0uy.css"
       ],
       "dynamic": [],
       "js": [],

@@ -1,0 +1,8 @@
+<div>
+    <div class="filters">
+        <button {{ live_action('setCategory', ['blog']) }} class="{{ category == 'blog' ? 'active' : '' }}">Blog</button>
+        <button {{ live_action('setCategory', ['news']) }} class="{{ category == 'news' ? 'active' : '' }}">News</button>
+        <button {{ live_action('setCategory', ['project']) }} class="{{ category == 'project' ? 'active' : '' }}">Projekte</button>
+        <button {{ live_action('setCategory', ['null']) }} class="{{ category == null ? 'active' : '' }}">Alle</button>
+    </div>
+</div>

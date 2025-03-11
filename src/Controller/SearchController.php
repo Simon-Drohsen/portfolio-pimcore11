@@ -3,21 +3,14 @@
 namespace App\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
-use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
-use Symfony\Component\Routing\Annotation\Route;
 use Pimcore\Model\DataObject;
 use Elasticsearch\ClientBuilder;
 
 class SearchController extends AbstractController
 {
-    /**
-     * @Route("/search", name="search")
-     */
-    public function search(Request $request): Response
+    public function search($query): array|Response
     {
-        $query = $request->query->get('q', '');
-
         try {
             $client = ClientBuilder::create()->setHosts([$_ENV['ELASTICSEARCH_HOST']])->build();
             $ping = $client->ping();
@@ -71,9 +64,6 @@ class SearchController extends AbstractController
             }
         }
 
-        return $this->render('search/results.html.twig', [
-            'query' => $query,
-            'results' => $objList
-        ]);
+        return $objList;
     }
 }

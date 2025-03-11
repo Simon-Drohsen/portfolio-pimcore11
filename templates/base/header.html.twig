@@ -15,11 +15,6 @@
 <nav class="bg-blue-900 mb-8 text-white">
     <ul class="flex space-x-4 p-4 justify-end">
         <li>
-            <form action="{{ path('search') }}" method="get">
-                <input type="text" name="q" placeholder="Search...">
-            </form>
-        </li>
-        <li>
             <a href="/" class="px-4 py-2 rounded-md
                 {% if document.id == 1 %} bg-blue-500 {% else %} hover:bg-blue-700 {% endif %}">
                 Home

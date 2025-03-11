@@ -5,15 +5,7 @@
         <twig:Container>
             {% if item_list is iterable and item_list is not empty %}
                 {% if category is defined %}
-                    <form method="GET" action="{{ path(app.request.attributes.get('_route')) }}" class="mb-6 flex flex-wrap gap-4">
-                        <select name="category" class="border p-2 rounded-lg">
-                            <option value="">Alle Kategorien</option>
-                            <option value="blog" {% if category == 'blog' %}selected{% endif %}>Blog</option>
-                            <option value="news" {% if category == 'news' %}selected{% endif %}>News</option>
-                            <option value="project" {% if category == 'project' %}selected{% endif %}>Projekt</option>
-                        </select>
-                        <button type="submit" class="px-4 py-2 bg-blue-900 text-white rounded-lg">Filtern</button>
-                    </form>
+{#                    {{ component('FilterComponent', item_list) }}#}
                 {% else %}
                     {% set category = '' %}
                 {% endif %}
@@ -29,7 +21,7 @@
                 <p class="text-large">{{ 'app.item_list.list.empty'|trans }}</p>
             {% endif %}
 
-            {{ knp_pagination_render(item_list, 'snippets/custom_pagination.html.twig', { 'category': category }) }}
+{#            {{ knp_pagination_render(item_list, 'snippets/custom_pagination.html.twig', { 'category': category }) }}#}
         </twig:Container>
     </twig:Section>
 {% endblock %}

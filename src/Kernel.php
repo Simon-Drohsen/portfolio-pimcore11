@@ -19,6 +19,7 @@ use Pimcore\Bundle\AdminBundle\PimcoreAdminBundle;
 use Pimcore\Bundle\QuillBundle\PimcoreQuillBundle;
 use Pimcore\HttpKernel\BundleCollection\BundleCollection;
 use Pimcore\Kernel as PimcoreKernel;
+use Symfony\UX\LiveComponent\LiveComponentBundle;
 
 class Kernel extends PimcoreKernel
 {

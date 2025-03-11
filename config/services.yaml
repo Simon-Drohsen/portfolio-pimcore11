@@ -58,6 +58,10 @@ services:
         resource: '../src/Command/*'
         tags: ['console.command']
 
+    App\Twig\Components\:
+        resource: '../src/Twig/Components/*'
+        tags: ['twig.component']
+
     # Example custom templating helper
     # App\Templating\Helper\Example:
     #     # templating helpers need to be public as they

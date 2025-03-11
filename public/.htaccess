@@ -174,7 +174,6 @@ AddDefaultCharset utf-8
 
 RewriteEngine On
 
-# Force https and non-www
 RewriteCond %{HTTPS} off [OR]
 RewriteCond %{HTTP:X-Forwarded-Proto} !https
 RewriteCond %{HTTP_HOST} ^www\. [NC]

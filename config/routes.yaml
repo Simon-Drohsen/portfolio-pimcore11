@@ -15,6 +15,6 @@ dynamic_search_frontend:
 pentatrion_vite:
     resource: 'routes/pentatrion_vite.yaml'
 
-search:
-    path: /search
-    controller: App\Controller\SearchController::search
+searchComponent:
+    path: /searchComponent
+    controller: App\Twig\Components\SearchComponent::getResults
